@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Déšť srdíček 💖</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: #fff;
+        font-family: Arial, sans-serif;
+    }
+
+    .heart {
+        position: absolute;
+        top: -50px;
+        color: rgba(255, 182, 193, 0.6); /* světle růžová průhledná */
+        animation: fall linear infinite, sway ease-in-out infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(110vh); }
+    }
+
+    @keyframes sway {
+        0% { margin-left: 0; }
+        50% { margin-left: 20px; }
+        100% { margin-left: 0; }
+    }
+
+    .center-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        background: linear-gradient(45deg, pink, hotpink, violet, lightblue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: 10;
+    }
+</style>
+</head>
+<body>
+
+<div class="center-text">люблю тебе козулька</div>
+
+<script>
+    const numberOfHearts = 120;
+
+    function createHeart() {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (10 + Math.random() * 30) + "px";
+
+        let fallDuration = 4 + Math.random() * 6;
+        heart.style.animationDuration = fallDuration + "s, " + (2 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, fallDuration * 1000);
+    }
+
+    setInterval(createHeart, 150);
+</script>
+
+</body>
+</html>
